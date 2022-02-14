@@ -44,10 +44,6 @@ public class OsCheck extends WebDriverInitializer {
                     System.out.println("---------The browser is Firefox-----------------");
                     detectedOSDriver = "/src/test/resources/drivers/geckodriver_win.exe";
                     break;
-                case "IE":
-                    System.out.println("---------The browser is IE-----------------");
-                    detectedOSDriver = "/src/test/resources/drivers/IEDriverServer.exe";
-                    break;
                 default:
                     System.out.println("---------The default browser is Chrome-----------");
                     detectedOSDriver = "/src/test/resources/drivers/chromedriver_win.exe";

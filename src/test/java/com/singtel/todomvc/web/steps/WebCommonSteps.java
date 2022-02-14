@@ -2,13 +2,12 @@ package com.singtel.todomvc.web.steps;
 
 import com.singtel.todomvc.web.utils.ElementContainer;
 import com.singtel.todomvc.web.utils.WebDriverInitializer;
-import cucumber.api.PendingException;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.*;
@@ -28,8 +27,6 @@ public class WebCommonSteps extends WebCommonMethods {
             if (sc.isFailed()) {
                 try {
                     final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-                    sc.embed(screenshot, "image/png"); // stick it in the report
-                    sc.write(driver.getCurrentUrl());
                     logger.info(driver.getCurrentUrl());
 
                 } catch (WebDriverException wde) {
@@ -73,7 +70,7 @@ public class WebCommonSteps extends WebCommonMethods {
             WebElement el = fluentWait(By.xpath("//*[text()='" + todoList.get(i - 1) + "']"));
             Assert.assertEquals(el.getText(), todoList.get(i - 1), "Incorrrect Values");
             //Verify the number of Tasks in List
-            Assert.assertEquals(fluentWait(By.xpath(ElementContainer.getElementLocator("NumberOfItems"))).getText(),String.valueOf(todoList.size()), "Number of items are incorrect in the list");
+            Assert.assertEquals(fluentWait(By.xpath(ElementContainer.getElementLocator("NumberOfItems"))).getText(), String.valueOf(todoList.size()), "Number of items are incorrect in the list");
         }
     }
 
@@ -196,8 +193,8 @@ public class WebCommonSteps extends WebCommonMethods {
 
     @And("^Verify if the number of Task list has \"([^\"]*)\" items$")
     public void verifyIfTheNumberOfTaskListHasItems(String itemNumber) throws Throwable {
-        Assert.assertEquals(fluentWait(By.xpath(ElementContainer.getElementLocator("NumberOfItems"))).getText(),itemNumber, "Number of items are incorrect in the list");
-        logger.info("Task List has: " + itemNumber +" items left");
+        Assert.assertEquals(fluentWait(By.xpath(ElementContainer.getElementLocator("NumberOfItems"))).getText(), itemNumber, "Number of items are incorrect in the list");
+        logger.info("Task List has: " + itemNumber + " items left");
     }
 
     @Then("^mark UnComplete the following TODOs$")
